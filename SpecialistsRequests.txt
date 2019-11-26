@@ -1,0 +1,8 @@
+Gastroenterologist 1
+Gynaecologist 12
+Paediatrician 5
+ENT_Specialist 1
+Dermatologist 4
+Orthopaedic_Specialist 3
+Ophthalmologist 3
+ÿ
