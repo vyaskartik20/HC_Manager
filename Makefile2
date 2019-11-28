@@ -1,0 +1,52 @@
+#compiler
+CXX = g++
+
+#flags
+CXXFLAGS = -c -Wall -g
+
+all: m1
+
+m1: main.o Patient.o Faculty.o OfficeOfAccounts.o Pharmacy.o DoctorsOffice.o OfficeOfAcademics.o
+	$(CXX) $(CFLAGS) -o m1 main.o Patient.o Faculty.o OfficeOfAccounts.o Pharmacy.o DoctorsOffice.o OfficeOfAcademics.o
+
+main.o: main.cpp Patient.cpp Faculty.cpp OfficeOfAccounts.cpp Pharmacy.cpp DoctorsOffice.cpp OfficeOfAcademics.cpp
+	$(CXX) $(CFLAGS) -c main.cpp Patient.cpp Faculty.cpp OfficeOfAccounts.cpp Pharmacy.cpp DoctorsOffice.cpp OfficeOfAcademics.cpp
+
+main.cpp: Patient.h Faculty.h OfficeOfAccounts.h Pharmacy.h DoctorsOffice.h OfficeOfAcademics.h
+
+Patient.o: Patient.cpp DoctorsOffice.cpp Pharmacy.cpp OfficeOfAcademics.cpp OfficeOfAccounts.cpp
+	$(CXX) $(CFLAGS) -c Patient.cpp DoctorsOffice.cpp Pharmacy.cpp OfficeOfAcademics.cpp OfficeOfAccounts.cpp
+
+Patient.cpp: Patient.h DoctorsOffice.h Pharmacy.h OfficeOfAcademics.h OfficeOfAccounts.h
+
+Faculty.o: Faculty.cpp OfficeOfAcademics.cpp
+	$(CXX) $(CFLAGS) -c Faculty.cpp OfficeOfAcademics.cpp
+
+Faculty.cpp: Faculty.h OfficeOfAcademics.h
+
+
+OfficeOfAccounts.o: OfficeOfAccounts.cpp OfficeOfAcademics.cpp
+	$(CXX) $(CFLAGS) -c OfficeOfAccounts.cpp OfficeOfAcademics.cpp
+
+OfficeOfAccounts.cpp: OfficeOfAccounts.h OfficeOfAcademics.h
+
+
+Pharmacy.o: Pharmacy.cpp OfficeOfAccounts.cpp OfficeOfAcademics.cpp
+	$(CXX) $(CFLAGS) -c Pharmacy.cpp OfficeOfAccounts.cpp OfficeOfAcademics.cpp
+
+Pharmacy.cpp: Pharmacy.h OfficeOfAccounts.h OfficeOfAcademics.h
+
+DoctorsOffice.o: DoctorsOffice.cpp OfficeOfAcademics.cpp
+	$(CXX) $(CFLAGS) -c DoctorsOffice.cpp OfficeOfAcademics.cpp
+
+DoctorsOffice.cpp: DoctorsOffice.h OfficeOfAcademics.h
+
+OfficeOfAcademics.o: OfficeOfAcademics.cpp
+	$(CXX) $(CFLAGS) -c OfficeOfAcademics.cpp
+
+OfficeOfAcademics.cpp: OfficeOfAcademics.h
+
+
+
+clean:
+	rm -rf *o m1
